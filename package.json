@@ -1,0 +1,33 @@
+{
+  "name": "vue-project",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview --port 5050",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@vue/composition-api": "^1.4.0",
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.3"
+  },
+  "devDependencies": {
+    "@ssthouse/vue-tree-chart": "0.5.4",
+    "@types/node": "^16.11.10",
+    "@vitejs/plugin-legacy": "^1.6.3",
+    "@vue/runtime-dom": "^3.2.22",
+    "d3-hierarchy": "^1.1.9",
+    "d3-selection": "^1.4.1",
+    "d3-zoom": "^1.8.3",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "typescript": "~4.5.2",
+    "unplugin-vue-components": "^0.17.11",
+    "unplugin-vue2-script-setup": "^0.7.1",
+    "vite": "^2.6.14",
+    "vite-plugin-vue2": "^1.9.0",
+    "vue-template-compiler": "^2.6.14",
+    "vue-tsc": "^0.29.6"
+  }
+}
