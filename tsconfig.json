@@ -15,6 +15,12 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@ASS": [
+        "src/assets"
+      ],
+      "@VIE": [
+        "src/views"
       ]
     },
     "lib": [

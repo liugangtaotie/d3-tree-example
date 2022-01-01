@@ -24,6 +24,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@ASS': fileURLToPath(new URL('./src/assets', import.meta.url)),
+      '@VIE': fileURLToPath(new URL('./src/views', import.meta.url)),
     },
   },
 })
