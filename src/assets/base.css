@@ -53,7 +53,7 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: inherit;
   margin: 0;
   position: relative;
   font-weight: normal;

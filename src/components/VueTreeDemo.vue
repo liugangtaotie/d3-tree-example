@@ -172,11 +172,11 @@
 </template>
 
 <script>
-// import VueTree from '@ssthouse/vue-tree-chart'
+import VueTree from "@ssthouse/vue-tree-chart";
 
 export default {
   name: "treemap",
-  // components: { 'vue-tree': VueTree },
+  components: { "vue-tree": VueTree },
   data() {
     return {
       sampleData: {
