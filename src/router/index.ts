@@ -6,11 +6,17 @@ import MainView from '../views/MainView.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: import.meta.env.BASE_URL,
   routes: [
     {
       path: '/',
+      name: 'home',
+      component: HomeView,
+    },
+    {
+      path: '/home',
+      redirect: '/',
       name: 'home',
       component: HomeView,
     },

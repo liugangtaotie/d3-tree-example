@@ -10,6 +10,7 @@
         <div
           class="rich-media-node"
           :style="{ border: collapsed ? '2px solid grey' : '' }"
+          @click="onClickNodeItem(node, collapsed)"
         >
           <img
             :src="node.avatar"
@@ -26,6 +27,7 @@
 
 <script>
 import VueTree from "@ssthouse/vue-tree-chart";
+import { uuid } from "@API/utils";
 
 export default {
   name: "HomeView",
@@ -90,7 +92,41 @@ export default {
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    // 点击node item
+    onClickNodeItem(node, collapsed) {
+      node.children &&
+        node.children.push({
+          name: "S2",
+          value: 250,
+          _key: uuid(),
+          avatar:
+            "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_female1.svg",
+        });
+
+      // node = this.deepCopy(node);
+    },
+
+    /**
+     * Returns a deep copy of selected node (copy of itself and it's children).
+     * If selected node or it's children have no '_key' attribute it will assign a new one.
+     **/
+    deepCopy(node) {
+      let obj = { _key: uuid() };
+      for (var key in node) {
+        if (node[key] === null) {
+          obj[key] = null;
+        } else if (Array.isArray(node[key])) {
+          obj[key] = node[key].map((x) => this.deepCopy(x));
+        } else if (typeof node[key] === "object") {
+          obj[key] = this.deepCopy(node[key]);
+        } else {
+          obj[key] = node[key];
+        }
+      }
+      return obj;
+    },
+  },
 };
 </script>
 

@@ -91,7 +91,6 @@ export default {
   methods: {
     // 添加子节点
     addChildren(item) {
-      console.info("222", item);
       item.data.children.push({ name: "如来" });
       this.getInit();
     },
@@ -107,13 +106,9 @@ export default {
       });
 
       this.nodes = treeDataTrue.descendants();
-
-      console.info("111122", this.nodes);
-
       this.links = treeDataTrue.links();
 
       this.links.map((item) => {
-        console.info("1111", item);
         if (item.source.x === item.target.x) {
           item.path = `M${item.source.x + this.util.nodeW / 2} ${
             item.source.y + this.util.nodeH

@@ -16,6 +16,9 @@
       "@/*": [
         "src/*"
       ],
+      "@API": [
+        "src/api"
+      ],
       "@ASS": [
         "src/assets"
       ],
