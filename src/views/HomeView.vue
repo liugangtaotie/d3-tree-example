@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>Rich media tree chart | 富媒体树状图</h3>
+    <h3>Rich media tree chart</h3>
     <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="richMediaData"
