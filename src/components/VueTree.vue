@@ -137,6 +137,7 @@ export default {
       this.enableDrag();
       this.initTransform();
     },
+
     zoomIn() {
       const originTransformStr = this.$refs.domContainer.style.transform;
       // 如果已有scale属性, 在原基础上修改
@@ -148,6 +149,7 @@ export default {
       }
       this.setScale(targetScale);
     },
+
     zoomOut() {
       const originTransformStr = this.$refs.domContainer.style.transform;
       // 如果已有scale属性, 在原基础上修改
@@ -159,18 +161,22 @@ export default {
       }
       this.setScale(targetScale);
     },
+
     restoreScale() {
       this.setScale(1);
     },
+
     setScale(scaleNum) {
       if (typeof scaleNum !== "number") return;
       let pos = this.getTranslate();
+      console.info("pos1111", pos);
       let translateString = `translate(${pos[0]}px, ${pos[1]}px)`;
       this.$refs.svg.style.transform = `scale(${scaleNum}) ` + translateString;
       this.$refs.domContainer.style.transform =
         `scale(${scaleNum}) ` + translateString;
       this.currentScale = scaleNum;
     },
+
     getTranslate() {
       let string = this.$refs.svg.style.transform;
       let match = string.match(MATCH_TRANSLATE_REGEX);
@@ -181,9 +187,11 @@ export default {
       let y = parseInt(match[2]);
       return [x, y];
     },
+
     isVertical() {
       return this.direction === DIRECTION.VERTICAL;
     },
+
     /**
      * Returns updated dataset by deep copying every nodes from the externalData and adding unique '_key' attributes.
      **/
@@ -199,6 +207,7 @@ export default {
       }
       return data;
     },
+
     /**
      * Returns a deep copy of selected node (copy of itself and it's children).
      * If selected node or it's children have no '_key' attribute it will assign a new one.
@@ -218,6 +227,7 @@ export default {
       }
       return obj;
     },
+
     initTransform() {
       const containerWidth = this.$refs.container.offsetWidth;
       const containerHeight = this.$refs.container.offsetHeight;
@@ -233,6 +243,7 @@ export default {
         this.initTransformY = Math.floor(containerHeight / 2);
       }
     },
+
     /**
      * 根据link数据,生成svg path data
      */
@@ -293,6 +304,7 @@ export default {
         return linkPath.toString();
       }
     },
+
     // 使用扇形数据开始绘图
     draw() {
       var [nodeDataList, linkDataList] = this.buildTree(this._dataset);
@@ -370,6 +382,7 @@ export default {
         .style("opacity", 0)
         .remove();
     },
+
     buildTree(rootNode) {
       const treeBuilder = this.d3
         .tree()
@@ -377,6 +390,8 @@ export default {
       const tree = treeBuilder(this.d3.hierarchy(rootNode));
       return [tree.descendants(), tree.links()];
     },
+
+    // 启动拖拽
     enableDrag() {
       const svgElement = this.$refs.svg;
       const container = this.$refs.container;

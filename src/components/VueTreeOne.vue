@@ -155,6 +155,7 @@ export default {
 
     // 放大
     zoomIn() {
+      console.info("kkk");
       const originTransformStr = this.$refs.domContainer.style.transform;
       // 如果已有scale属性, 在原基础上修改
       let targetScale = 1 * 1.2;
@@ -163,6 +164,7 @@ export default {
         const originScale = parseFloat(scaleMatchResult[1]);
         targetScale *= originScale;
       }
+      console.info("targetScale", targetScale);
       this.setScale(targetScale);
     },
 
@@ -486,8 +488,8 @@ export default {
             transformStr
           );
         }
-        svgElement.style.transform = transformStr;
-        this.$refs.domContainer.style.transform = transformStr;
+        svgElement.style.transform = `scale(${k}) ` + transformStr;
+        this.$refs.domContainer.style.transform = `scale(${k}) ` + transformStr;
       };
 
       container.onmouseup = (event) => {
@@ -502,48 +504,71 @@ export default {
       let that = this;
       let container = d3Select("#container");
       // let container = d3Select("#container");
-      const svgElement = d3Select("#svg");
+      const svgElement = this.$refs.svg;
+      console.info("1111", svgElement);
+
       // const container = this.$refs.container;
-      // let startX = 0;
-      // let startY = 0;
-      // let isDrag = false;
-      // 保存鼠标点下时的位移
-      // let mouseDownTransform = "";
+      let startX = 0;
+      let startY = 0;
+      let isDrag = false;
+      // 保存鼠标点下时的位移;
+      let mouseDownTransform = "";
       let zoom = d3Zoom()
         .scaleExtent([0.5, 2])
         .on("start", function () {
-          // mouseDownTransform = svgElement.style.transform;
-          // const { k, x, y } = d3Event.transform;
-          // // console.info("2222", event);
-          // startX = x;
-          // startY = y;
-          // isDrag = true;
+          mouseDownTransform = svgElement.style.transform;
+          console.info("mouseDownTransform11", mouseDownTransform);
+          const { x, y } = d3Event.transform;
+          startX = x;
+          startY = y;
+          isDrag = true;
         })
         .on("zoom", function () {
           // that.setScale(d3Event.transform.k);
           const { k, x, y } = d3Event.transform;
-          that.setTransform(k, x, y);
 
-          that.setScale(d3Event.transform.k);
+          if (!isDrag) return;
+          that.setScale(k);
+
+          // const originTransform = mouseDownTransform;
+          // let originOffsetX = 0;
+          // let originOffsetY = 0;
+          // if (originTransform) {
+          //   const result = originTransform.match(MATCH_TRANSLATE_REGEX);
+          //   if (result !== null && result.length !== 0) {
+          //     const [offsetX, offsetY] = result.slice(1);
+          //     originOffsetX = parseInt(offsetX);
+          //     originOffsetY = parseInt(offsetY);
+          //   }
+          // }
+          // console.info("originTransform", originTransform);
+
+          // let newX =
+          //   Math.floor((x - startX) / that.currentScale) + originOffsetX;
+
+          // console.info("newX", newX);
+          // let newY =
+          //   Math.floor((y - startY) / that.currentScale) + originOffsetY;
+          // let transformStr = `translate(${x}px, ${y}px)`;
+
+          // console.info("mmm", transformStr);
+          // if (originTransform) {
+          //   transformStr = originTransform.replace(
+          //     MATCH_TRANSLATE_REGEX,
+          //     transformStr
+          //   );
+          // }
+          // console.info("2222transformStr", transformStr);
+          // svgElement.style.transform = transformStr;
+          // that.$refs.domContainer.style.transform = transformStr;
         })
         .on("end", function () {
-          // startX = 0;
-          // startY = 0;
-          // isDrag = false;
+          startX = 0;
+          startY = 0;
+          isDrag = false;
         });
 
       container.call(zoom).on("dblclick.zoom", null);
-    },
-
-    // 设置偏移量
-    setTransform(k, x, y) {
-      console.info("mmm", k, x, y);
-      const transformStr = `scale(${k}),translate(${x}px, ${y}px)`;
-      // this.$refs.svg.style.transform = transformStr;
-      // this.$refs.domContainer.style.transform = transformStr;
-
-      this.$refs.svg.style.transform = transformStr;
-      this.$refs.domContainer.style.transform = transformStr;
     },
   },
   watch: {

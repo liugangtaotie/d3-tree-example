@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <h3>Rich media tree chart</h3>
+    <div style="display: flex" class="mb20">
+      <el-button @click="controlScale('bigger')">+</el-button>
+      <el-button @click="controlScale('smaller')">-</el-button>
+      <el-button @click="controlScale('restore')">1:1</el-button>
+    </div>
     <vue-tree
+      ref="scaleTree"
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="richMediaData"
       :config="treeConfig"
@@ -22,8 +28,8 @@
               margin: 0 auto;
             "
           />
-          <div style="padding: 4px 0; font-weight: bold">
-            能力值{{ node.value }}
+          <div style="padding: 4px 0; font-weight: bold" class="text-center">
+            {{ node.name }}
           </div>
         </div>
       </template>
@@ -33,8 +39,10 @@
 
 <script>
 import { uuid } from "@API/utils";
+import VueTreeOne from "@/components/VueTreeOne.vue";
 
 export default {
+  components: { VueTreeOne },
   name: "HomeView",
   data() {
     return {
@@ -133,6 +141,20 @@ export default {
         }
       }
       return obj;
+    },
+
+    controlScale(command) {
+      switch (command) {
+        case "bigger":
+          this.$refs.scaleTree.zoomIn();
+          break;
+        case "smaller":
+          this.$refs.scaleTree.zoomOut();
+          break;
+        case "restore":
+          this.$refs.scaleTree.restoreScale();
+          break;
+      }
     },
   },
 };
