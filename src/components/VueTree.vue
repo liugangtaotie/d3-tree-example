@@ -169,7 +169,6 @@ export default {
     setScale(scaleNum) {
       if (typeof scaleNum !== "number") return;
       let pos = this.getTranslate();
-      console.info("pos1111", pos);
       let translateString = `translate(${pos[0]}px, ${pos[1]}px)`;
       this.$refs.svg.style.transform = `scale(${scaleNum}) ` + translateString;
       this.$refs.domContainer.style.transform =

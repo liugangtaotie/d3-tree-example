@@ -47,56 +47,56 @@ export default {
   data() {
     return {
       richMediaData: {
-        name: "James",
+        name: "释迦摩尼",
         value: 800,
         avatar:
-          "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_female3.svg",
+          "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
         children: [
           {
-            name: "Bob",
+            name: "菩萨",
             value: 400,
             avatar:
-              "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_male4.svg",
+              "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
             children: [
               {
-                name: "C1",
+                name: "文殊",
                 value: 100,
                 avatar:
-                  "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_female4.svg",
+                  "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
               },
               {
-                name: "C2",
+                name: "虚空藏",
                 value: 300,
                 avatar:
-                  "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_male2.svg",
+                  "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
               },
               {
-                name: "C3",
+                name: "观世音",
                 value: 200,
                 avatar:
-                  "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_male3.svg",
+                  "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
               },
             ],
           },
           {
-            name: "Smith",
+            name: "救脱",
             value: 200,
             avatar:
-              "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_male3.svg",
+              "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
             children: [
               {
-                name: "S1",
+                name: "陀和",
                 value: 230,
                 avatar:
-                  "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_female1.svg",
+                  "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
               },
             ],
           },
           {
-            name: "Jackson",
+            name: "后大势至",
             value: 300,
             avatar:
-              "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_female3.svg",
+              "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
           },
         ],
       },
@@ -107,7 +107,6 @@ export default {
   methods: {
     // 点击node item
     onClickNodeItem(node, collapsed) {
-      console.info("1111", collapsed);
       if (!collapsed) {
         return;
       }
