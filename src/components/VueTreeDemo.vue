@@ -127,7 +127,7 @@
     </h3>
     <vue-tree-two
       style="width: 800px; height: 600px; border: 1px solid gray"
-      :dataset="vehicules"
+      :dataset="vehicles"
       :config="treeConfig"
       :collapse-enabled="false"
       linkStyle="straight"
@@ -172,11 +172,8 @@
 </template>
 
 <script>
-// import VueTree from "@ssthouse/vue-tree-two-chart";
-
 export default {
   name: "treemap",
-  // components: { "vue-tree-two": VueTree },
   data() {
     return {
       sampleData: {
@@ -240,7 +237,7 @@ export default {
           },
         ],
       },
-      vehicules: {
+      vehicles: {
         name: "Wheels",
         children: [
           {

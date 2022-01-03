@@ -26,12 +26,10 @@
 </template>
 
 <script>
-// import VueTree from "@ssthouse/vue-tree-chart";
 import { uuid } from "@API/utils";
 
 export default {
   name: "HomeView",
-  // components: { "vue-tree": VueTree },
   data() {
     return {
       richMediaData: {
