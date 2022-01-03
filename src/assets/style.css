@@ -1,103 +1,3 @@
-/* for 1080+ px width screen */
-@media only screen and (min-device-width: 1080px),
-  only screen and (min-width: 1080px) {
-
-  html,
-  body {
-    font-size: 170px;
-  }
-}
-
-/* for 1080 px width screen */
-@media only screen and (max-device-width: 1080px),
-  only screen and (max-width: 1080px) {
-
-  html,
-  body {
-    font-size: 144px;
-  }
-}
-
-/* for 800 px width screen */
-@media only screen and (max-device-width: 800px),
-  only screen and (max-width: 800px) {
-
-  html,
-  body {
-    font-size: 107px;
-  }
-}
-
-/* for 720 px width screen */
-@media only screen and (max-device-width: 720px),
-  only screen and (max-width: 720px) {
-
-  html,
-  body {
-    font-size: 96px;
-  }
-}
-
-/* for 640 px width screen */
-@media only screen and (max-device-width: 640px),
-  only screen and (max-width: 640px) {
-
-  html,
-  body {
-    font-size: 85px;
-  }
-}
-
-/* for 540 px width screen */
-@media only screen and (max-device-width: 540px),
-  only screen and (max-width: 540px) {
-
-  html,
-  body {
-    font-size: 72px;
-  }
-}
-
-/* for 480 px width screen */
-@media only screen and (max-device-width: 480px),
-  only screen and (max-width: 480px) {
-
-  html,
-  body {
-    font-size: 64px;
-  }
-}
-
-/* for 414 px width screen */
-@media only screen and (max-width: 414px),
-  only screen and (max-device-width: 414px) {
-
-  html,
-  body {
-    font-size: 55.2px;
-  }
-}
-
-/* for 375 px width screen */
-@media only screen and (max-width: 375px),
-  only screen and (max-device-width: 375px) {
-
-  html,
-  body {
-    font-size: 50px;
-  }
-}
-
-/* for 320 px width screen */
-@media only screen and (max-width: 320px),
-  only screen and (max-device-width: 320px) {
-
-  html,
-  body {
-    font-size: 42.7px;
-  }
-}
-
 .no-data {
   position: absolute;
   top: 50%;
@@ -326,6 +226,10 @@
 
 .mb10 {
   margin-bottom: 10px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
 }
 
 .mb50 {

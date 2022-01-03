@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'url'
-
+import path, { resolve } from 'path'
 import { defineConfig } from 'vite'
 import legacy from '@vitejs/plugin-legacy'
 import { createVuePlugin as vue2 } from 'vite-plugin-vue2'
@@ -21,6 +21,18 @@ export default defineConfig({
       /* options */
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      less: {
+        globalVars: {
+          hack: `true; @import "${path.join(
+            __dirname,
+            './src/assets/theme.less'
+          )}"`,
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

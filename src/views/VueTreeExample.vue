@@ -94,10 +94,10 @@
     </vue-tree>
 
     <h3>Zoom in or out | 缩放</h3>
-    <div style="display: flex">
-      <button @click="controlScale('bigger')">+</button>
-      <button @click="controlScale('smaller')">-</button>
-      <button @click="controlScale('restore')">1:1</button>
+    <div style="display: flex" class="mb20">
+      <el-button @click="controlScale('bigger')">+</el-button>
+      <el-button @click="controlScale('smaller')">-</el-button>
+      <el-button @click="controlScale('restore')">1:1</el-button>
     </div>
     <vue-tree
       ref="scaleTree"
@@ -147,9 +147,13 @@
     <h3>
       Example of multi-root with changing dataset | 多根节点, 支持切换数据源
     </h3>
-    <button type="button" class="changeDataset" v-on:click="clicked = !clicked">
+    <el-button
+      type="primary"
+      class="changeDataset"
+      v-on:click="clicked = !clicked"
+    >
       Change dataset
-    </button>
+    </el-button>
     <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="multiRootChoice"

@@ -14,11 +14,17 @@
         >
           <img
             :src="node.avatar"
-            style="width: 48px; height: 48px; border-raduis: 4px"
+            style="
+              display: block;
+              width: 48px;
+              height: 48px;
+              border-radius: 4px;
+              margin: 0 auto;
+            "
           />
-          <span style="padding: 4px 0; font-weight: bold"
-            >能力值{{ node.value }}</span
-          >
+          <div style="padding: 4px 0; font-weight: bold">
+            能力值{{ node.value }}
+          </div>
         </div>
       </template>
     </vue-tree>
@@ -140,12 +146,8 @@ export default {
 }
 
 .rich-media-node {
-  width: 80px;
+  width: 100px;
   padding: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   color: white;
   background-color: #f7c616;
   border-radius: 4px;
