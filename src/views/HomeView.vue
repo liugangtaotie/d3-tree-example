@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h3>Rich media tree chart | 富媒体树状图</h3>
-    <vue-tree
+    <vue-tree-two
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="richMediaData"
       :config="treeConfig"
@@ -21,17 +21,17 @@
           >
         </div>
       </template>
-    </vue-tree>
+    </vue-tree-two>
   </div>
 </template>
 
 <script>
-import VueTree from "@ssthouse/vue-tree-chart";
+// import VueTree from "@ssthouse/vue-tree-chart";
 import { uuid } from "@API/utils";
 
 export default {
   name: "HomeView",
-  components: { "vue-tree": VueTree },
+  // components: { "vue-tree": VueTree },
   data() {
     return {
       richMediaData: {
@@ -95,6 +95,10 @@ export default {
   methods: {
     // 点击node item
     onClickNodeItem(node, collapsed) {
+      console.info("1111", collapsed);
+      if (!collapsed) {
+        return;
+      }
       node.children &&
         node.children.push({
           name: "S2",
