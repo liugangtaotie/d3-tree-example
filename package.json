@@ -13,11 +13,10 @@
     "vue-router": "^3.5.3"
   },
   "devDependencies": {
-    "@ssthouse/tree-chart-core": "^1.1.1",
-    "@ssthouse/vue-tree-chart": "0.5.4",
     "@types/node": "^16.11.10",
     "@vitejs/plugin-legacy": "^1.6.3",
     "@vue/runtime-dom": "^3.2.22",
+    "d3": "^7.2.1",
     "d3-hierarchy": "^1.1.9",
     "d3-selection": "^1.4.1",
     "d3-zoom": "^1.8.3",
