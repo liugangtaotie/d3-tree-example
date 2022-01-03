@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h3>Rich media tree chart | 富媒体树状图</h3>
-    <vue-tree-two
+    <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="richMediaData"
       :config="treeConfig"
@@ -21,7 +21,7 @@
           >
         </div>
       </template>
-    </vue-tree-two>
+    </vue-tree>
   </div>
 </template>
 

@@ -75,7 +75,7 @@ function rotatePoint({ x, y }) {
 }
 
 export default {
-  name: "vue-tree-two",
+  name: "vue-tree",
   props: {
     config: {
       type: Object,

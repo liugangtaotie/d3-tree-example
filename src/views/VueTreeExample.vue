@@ -2,16 +2,16 @@
   <div class="container">
     <h3>Basic usage | 基本使用</h3>
 
-    <vue-tree-two
+    <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="sampleData"
       :config="treeConfig"
     >
-    </vue-tree-two>
+    </vue-tree>
 
     <h3>Show different style with folded nodes | 异化展示折叠节点</h3>
 
-    <vue-tree-two
+    <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="sampleData"
       :config="treeConfig"
@@ -23,10 +23,10 @@
           >{{ node.value }}</span
         >
       </template>
-    </vue-tree-two>
+    </vue-tree>
 
     <h3>Rich media tree chart | 富媒体树状图</h3>
-    <vue-tree-two
+    <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="richMediaData"
       :config="treeConfig"
@@ -45,10 +45,10 @@
           >
         </div>
       </template>
-    </vue-tree-two>
+    </vue-tree>
 
     <h3>Link nodes with straight line | 直线连接</h3>
-    <vue-tree-two
+    <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="richMediaData"
       :config="treeConfig"
@@ -68,10 +68,10 @@
           >
         </div>
       </template>
-    </vue-tree-two>
+    </vue-tree>
 
     <h3>Horizontal tree chart | 横向树状图</h3>
-    <vue-tree-two
+    <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="richMediaData"
       :config="treeConfig"
@@ -91,7 +91,7 @@
           >
         </div>
       </template>
-    </vue-tree-two>
+    </vue-tree>
 
     <h3>Zoom in or out | 缩放</h3>
     <div style="display: flex">
@@ -99,7 +99,7 @@
       <button @click="controlScale('smaller')">-</button>
       <button @click="controlScale('restore')">1:1</button>
     </div>
-    <vue-tree-two
+    <vue-tree
       ref="scaleTree"
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="richMediaData"
@@ -119,13 +119,13 @@
           >
         </div>
       </template>
-    </vue-tree-two>
+    </vue-tree>
 
     <h3>
       Example of multiple parents with node collapse disabled |
       支持多父节点(禁用折叠)
     </h3>
-    <vue-tree-two
+    <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="vehicles"
       :config="treeConfig"
@@ -142,7 +142,7 @@
           >
         </div>
       </template>
-    </vue-tree-two>
+    </vue-tree>
 
     <h3>
       Example of multi-root with changing dataset | 多根节点, 支持切换数据源
@@ -150,7 +150,7 @@
     <button type="button" class="changeDataset" v-on:click="clicked = !clicked">
       Change dataset
     </button>
-    <vue-tree-two
+    <vue-tree
       style="width: 800px; height: 600px; border: 1px solid gray"
       :dataset="multiRootChoice"
       :config="treeConfig"
@@ -167,13 +167,13 @@
           >
         </div>
       </template>
-    </vue-tree-two>
+    </vue-tree>
   </div>
 </template>
 
 <script>
 export default {
-  name: "treemap",
+  name: "VueTreeExample",
   data() {
     return {
       sampleData: {
