@@ -26,7 +26,7 @@
         >
           <slot
             name="node"
-            v-bind:node="node.data"
+            v-bind:node="node"
             v-bind:collapsed="node.data._collapsed"
           >
             <!-- 默认展示value字段 -->
@@ -314,6 +314,7 @@ export default {
       );
       this.linkDataList = linkDataList;
       this.nodeDataList = nodeDataList;
+      console.info("this.nodeDataList", this.nodeDataList);
       const identifier = this.dataset["identifier"];
       const specialLinks = this.dataset["links"];
       if (specialLinks && identifier) {

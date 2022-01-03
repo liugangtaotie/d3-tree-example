@@ -18,8 +18,17 @@
           :style="{ border: collapsed ? '2px solid grey' : '' }"
           @click="onClickNodeItem(node, collapsed)"
         >
+          <el-popover placement="top-start" width="200" trigger="hover">
+            <el-button
+              v-if="!collapsed"
+              @click="onClickAddChildNode(node, collapsed)"
+              >添加子节点</el-button
+            >
+            <el-button @click="onClickDelNode(node)">删除该节点</el-button>
+            <div slot="reference" class="text-center">{{ node.data.name }}</div>
+          </el-popover>
           <img
-            :src="node.avatar"
+            :src="node.data.avatar"
             style="
               display: block;
               width: 48px;
@@ -28,9 +37,6 @@
               margin: 0 auto;
             "
           />
-          <div style="padding: 4px 0; font-weight: bold" class="text-center">
-            {{ node.name }}
-          </div>
         </div>
       </template>
     </vue-tree>
@@ -116,10 +122,44 @@ export default {
           value: 250,
           _key: uuid(),
           avatar:
-            "https://live.yworks.com/demos/complete/interactiveorgchart/resources/usericon_female1.svg",
+            "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
         });
 
       // node = this.deepCopy(node);
+    },
+
+    // 点击添加子节点
+    onClickAddChildNode(node, collapsed) {
+      // if (!collapsed) {
+      //   return;
+      // }
+      if (!node.children) {
+        node.children = [];
+      }
+      node.children &&
+        node.children.push({
+          name: "S2",
+          value: 250,
+          _key: uuid(),
+          avatar:
+            "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
+        });
+      console.info("11111", node.children);
+      this.$refs.scaleTree.draw();
+    },
+
+    // 删除当前节点
+    onClickDelNode(node) {
+      console.info("node", node);
+      // node = "";
+      // console.info("_key", node.  d_key);
+      // this.richMediaData.children.splice(2, 1);
+      // const children = node.parent.children.findIndex((item)=>{
+      //   item.
+      // })
+
+      console.info("1111", this.richMediaData);
+      // this.$refs.scaleTree.draw();
     },
 
     /**
