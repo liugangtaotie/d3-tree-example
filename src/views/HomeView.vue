@@ -154,11 +154,16 @@ export default {
       // node = "";
       // console.info("_key", node.  d_key);
       // this.richMediaData.children.splice(2, 1);
-      // const children = node.parent.children.findIndex((item)=>{
-      //   item.
-      // })
+      const parent = node.parent;
+      const children = parent.children || parent.data;
+      console.info("children", children);
+      const index = children.findIndex(
+        (item) => item.data.name === node.data.name
+      );
+      console.info("index", index);
+      children.splice(index, 1);
 
-      console.info("1111", this.richMediaData);
+      // console.info("1111", this.richMediaData);
       // this.$refs.scaleTree.draw();
     },
 
