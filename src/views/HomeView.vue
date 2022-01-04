@@ -22,9 +22,12 @@
             <el-button
               v-if="!collapsed"
               @click="onClickAddChildNode(node, collapsed)"
+              size="mini"
               >添加子节点</el-button
             >
-            <el-button @click="onClickDelNode(node)">删除该节点</el-button>
+            <el-button @click="onClickDelNode(node)" size="mini"
+              >删除该节点</el-button
+            >
             <div slot="reference" class="text-center">{{ node.data.name }}</div>
           </el-popover>
           <img
