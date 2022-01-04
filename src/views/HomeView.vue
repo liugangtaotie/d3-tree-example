@@ -21,7 +21,7 @@
           <el-popover placement="top-start" width="200" trigger="hover">
             <el-button
               v-if="!collapsed"
-              @click="onClickAddChildNode(node, collapsed)"
+              @click="onClickAddChildNode(node.data, collapsed)"
               size="mini"
               >添加子节点</el-button
             >
@@ -165,9 +165,11 @@ export default {
       );
       console.info("index", index);
       children.splice(index, 1);
+      node.parent.children = children;
 
       // console.info("1111", this.richMediaData);
       // this.$refs.scaleTree.draw();
+      this.$refs.scaleTree.draw();
     },
 
     /**

@@ -24,7 +24,9 @@
         >
           <rect class="node" :width="util.nodeW" :height="util.nodeH"></rect>
           <foreignObject :width="util.nodeW" :height="util.nodeH">
-            <div class="text">{{ item.data.name }}</div>
+            <div class="text" @click="onClickNodeItem(index)">
+              {{ item.data.name }}
+            </div>
           </foreignObject>
           <g
             v-if="item.children && item.children.length > 0"
@@ -137,6 +139,25 @@ export default {
         });
 
       svg.call(zoom).on("dblclick.zoom", null);
+    },
+
+    // 点击当前节点
+    onClickNodeItem(index) {
+      console.info("mmm", index);
+      const curNode = this.nodes[index];
+      if (curNode.data.children) {
+        curNode.data._children = curNode.data.children;
+        curNode.data.children = null;
+        curNode.data._collapsed = true;
+      } else {
+        curNode.data.children = curNode.data._children;
+        curNode.data._children = null;
+        curNode.data._collapsed = false;
+      }
+      this.getInit();
+      // if (this.collapseEnabled) {
+
+      // }
     },
   },
 };

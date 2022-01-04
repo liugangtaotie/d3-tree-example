@@ -442,7 +442,9 @@ export default {
         isDrag = false;
       };
     },
+
     onClickNode(index) {
+      console.info("mmm", index);
       if (this.collapseEnabled) {
         const curNode = this.nodeDataList[index];
         if (curNode.data.children) {
@@ -457,6 +459,7 @@ export default {
         this.draw();
       }
     },
+
     formatDimension(dimension) {
       if (typeof dimension === "number") return `${dimension}px`;
       if (dimension.indexOf("px") !== -1) {
@@ -465,6 +468,7 @@ export default {
         return `${dimension}px`;
       }
     },
+
     parseDimensionNumber(dimension) {
       if (typeof dimension === "number") {
         return dimension;
