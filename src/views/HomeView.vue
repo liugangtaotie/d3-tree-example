@@ -157,22 +157,25 @@ export default {
       // node = "";
       // console.info("_key", node.  d_key);
       // this.richMediaData.children.splice(2, 1);
-      // const parent = node.parent;
-      // const children = parent.children || parent.data;
-      // console.info("children", children);
-      // const index = children.findIndex(
-      //   (item) => item.data.name === node.data.name
-      // );
-      // console.info("index", index);
-      // children.splice(index, 1);
-      // node.parent.children = children;
-      // node.parent.removeChild(node);
+      const parent = node.parent;
+      const children = parent.children || parent.data;
+      console.info("children", children);
+      const index = children.findIndex(
+        (item) => item.data.name === node.data.name
+      );
+      console.info("index", index);
+      children.splice(index, 1);
+      // // node.parent.children = children;
+      // // node.parent.removeChild(node);
 
-      console.info("kkkk", node.parent);
+      // console.info("kkkk", node.parent);
+      console.info("currentChildren", children);
+
+      // this.$set(node.parent, "children", children);
 
       // console.info("1111", this.richMediaData);
       // this.$refs.scaleTree.draw();
-      this.$refs.scaleTree.draw();
+      // this.$refs.scaleTree.draw();
     },
 
     /**

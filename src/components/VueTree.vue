@@ -480,7 +480,6 @@ export default {
     _dataset: {
       deep: true,
       handler: function () {
-        console.info("KSSSSS");
         this.draw();
         this.initTransform();
       },
