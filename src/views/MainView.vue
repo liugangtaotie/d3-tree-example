@@ -3,10 +3,28 @@
 <template>
   <div class="tree">
     <svg id="tree" :width="util.width" :height="util.height">
+      <defs>
+        <marker
+          id="markerArrow"
+          viewBox="0 0 20 20"
+          refX="0"
+          refY="10"
+          markerWidth="10"
+          markerHeight="10"
+          orient="auto"
+        >
+          <path d="M 0 0 L 20 10 L 0 20 z" style="fill: #61a8e0" />
+        </marker>
+      </defs>
       <g class="gIndex" :transform="zoomIdentity">
         <g v-for="(item, index) in links" :key="index + 'a'" class="gedges">
-          <path class="edges" :d="item.path"></path>
-          <g
+          <path
+            class="edges"
+            :d="item.path"
+            stroke-width="2"
+            marker-end="url(#markerArrow)"
+          ></path>
+          <!-- <g
             :transform="`translate(${item.target.x + util.nodeW / 2},${
               item.target.y - 30
             })`"
@@ -14,7 +32,7 @@
             <foreignObject width="70" height="20" x="-35">
               <div class="text" @click="addChildren(item)">添加线索</div>
             </foreignObject>
-          </g>
+          </g> -->
         </g>
         <g
           v-for="(item, index) in nodes"
@@ -115,7 +133,7 @@ export default {
           item.path = `M${item.source.x + this.util.nodeW / 2} ${
             item.source.y + this.util.nodeH
           }
-        L${item.target.x + this.util.nodeW / 2} ${item.target.y}`;
+        L${item.target.x + this.util.nodeW / 2} ${item.target.y - 10}`;
         } else {
           item.path = `M${item.source.x + this.util.nodeW / 2} ${
             item.source.y + this.util.nodeH
@@ -124,7 +142,7 @@ export default {
             item.source.y + this.util.nodeH + 50
           }
         L${item.target.x + this.util.nodeW / 2} ${item.target.y - 50}
-        L${item.target.x + this.util.nodeW / 2} ${item.target.y}`;
+        L${item.target.x + this.util.nodeW / 2} ${item.target.y - 10}`;
         }
       });
     },

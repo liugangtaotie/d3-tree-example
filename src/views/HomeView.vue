@@ -166,12 +166,14 @@ export default {
       console.info("index", index);
       children.splice(index, 1);
       // // node.parent.children = children;
-      // // node.parent.removeChild(node);
+      // node.parent.removeChild(node);
 
       // console.info("kkkk", node.parent);
       console.info("currentChildren", children);
 
       // this.$set(node.parent, "children", children);
+
+      this.$forceUpdate();
 
       // console.info("1111", this.richMediaData);
       // this.$refs.scaleTree.draw();
