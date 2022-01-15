@@ -26,7 +26,7 @@ export function uuid(): string {
 }
 
 function wrapText(
-  context: any,
+  context,
   text: string,
   x: number,
   y: number,

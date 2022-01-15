@@ -26,7 +26,7 @@ export function uuid(): string {
 }
 
 function wrapText(
-  context: any,
+  context,
   text: string,
   x: number,
   y: number,
@@ -71,7 +71,7 @@ function roundRect(
   if (typeof radius === 'number') {
     radius = { tl: radius, tr: radius, br: radius, bl: radius }
   } else {
-    let defaultRadius: any = { tl: 0, tr: 0, br: 0, bl: 0 }
+    let defaultRadius = { tl: 0, tr: 0, br: 0, bl: 0 }
     for (let side in defaultRadius) {
       radius[side] = radius[side] || defaultRadius[side]
     }

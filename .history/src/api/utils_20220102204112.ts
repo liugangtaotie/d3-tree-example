@@ -1,13 +1,6 @@
 import * as colorUtil from './color-util'
 
-function text(
-  ctx: any,
-  text: any,
-  x: number,
-  y: number,
-  fontSize: any,
-  fontColor: string
-) {
+function text(ctx, text, x: number, y: number, fontSize, fontColor: string) {
   ctx.font = '14px Arial'
   ctx.fillStyle = fontColor
   ctx.fillText(text, x, y)
@@ -15,7 +8,7 @@ function text(
 
 export function uuid(): string {
   const s = []
-  const hexDigits: any = '0123456789abcdef'
+  const hexDigits = '0123456789abcdef'
   for (let i = 0; i < 36; i++) {
     s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1)
   }
@@ -26,7 +19,7 @@ export function uuid(): string {
 }
 
 function wrapText(
-  context: any,
+  context,
   text: string,
   x: number,
   y: number,
@@ -71,7 +64,7 @@ function roundRect(
   if (typeof radius === 'number') {
     radius = { tl: radius, tr: radius, br: radius, bl: radius }
   } else {
-    let defaultRadius: any = { tl: 0, tr: 0, br: 0, bl: 0 }
+    let defaultRadius = { tl: 0, tr: 0, br: 0, bl: 0 }
     for (let side in defaultRadius) {
       radius[side] = radius[side] || defaultRadius[side]
     }
@@ -104,5 +97,5 @@ export default {
   ...colorUtil,
   text,
   wrapText,
-  roundRect,
+  roundRect
 }
