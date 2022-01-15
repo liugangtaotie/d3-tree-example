@@ -70,6 +70,7 @@ export default {
               {
                 name: "文殊",
                 value: 100,
+                router: "tree-two",
                 avatar:
                   "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
               },
