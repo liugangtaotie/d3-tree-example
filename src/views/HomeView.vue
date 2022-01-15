@@ -25,8 +25,8 @@
               size="mini"
               >添加子节点</el-button
             >
-            <el-button @click="onClickDelNode(node)" size="mini"
-              >删除该节点</el-button
+            <el-button @click="$router.push(node.data.router)" size="mini"
+              >跳转主页面</el-button
             >
             <div slot="reference" class="text-center">{{ node.data.name }}</div>
           </el-popover>
@@ -48,22 +48,22 @@
 
 <script>
 import { uuid } from "@API/utils";
-import VueTreeOne from "@/components/VueTreeOne.vue";
 
 export default {
-  components: { VueTreeOne },
   name: "HomeView",
   data() {
     return {
       richMediaData: {
-        name: "释迦摩尼",
+        name: "main",
         value: 800,
+        router: "main",
         avatar:
           "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
         children: [
           {
-            name: "菩萨",
+            name: "tree",
             value: 400,
+            router: "tree-one",
             avatar:
               "https://user-images.githubusercontent.com/22477383/147928532-2136501d-84b4-428a-8e40-e7ab61f61134.jpeg",
             children: [
