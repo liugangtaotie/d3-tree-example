@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-02-10 23:47:55
- * @LastEditTime: 2022-02-13 00:02:20
+ * @LastEditTime: 2022-02-13 00:08:38
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /d3-tree-example/src/views/ForceExample/force-two.vue
@@ -187,7 +187,7 @@ export default {
         .enter()
         .append("text")
         .attr("text-anchor", "middle")
-        .attr("dy", "0.3em")
+        // .attr("dy", "0.3em")
         .text((d) => d.name)
         .call(this.drag);
 
@@ -197,7 +197,7 @@ export default {
     ticked() {
       //虽然仿真系统会更新节点的位置(只是设置了nodes对象的x y属性)，但是它不会转为svg内部元素的坐标表示，这需要我们自己来操作
       this.links.attr("d", function (d) {
-        var dr = 75 / d.linknum; //linknum is defined above
+        var dr = 500 / d.linknum; //linknum is defined above
         if (d.linknum === 0) {
           return `M ${d.source.x},${d.source.y} L ${d.target.x},${d.target.y}`;
         }
@@ -280,7 +280,7 @@ export default {
       //定义缩放函数
       var zoom = d3
         .zoom()
-        .scaleExtent([1, 10]) //用于设置最小和最大的缩放比例
+        .scaleExtent([1 / 10, 10]) // 用于设置最小和最大的缩放比例
         .on("zoom", zoomed);
 
       function zoomed(event) {
