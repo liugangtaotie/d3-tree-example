@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-02-10 23:47:55
- * @LastEditTime: 2022-02-11 10:16:43
+ * @LastEditTime: 2022-02-12 18:14:33
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /d3-tree-example/src/views/ForceExample/force-two.vue
@@ -49,12 +49,13 @@ export default {
       this.nodesData = nodesData;
 
       let linksData = [
-        { source: 0, target: 1, relationship: "直达2" },
-        { source: 0, target: 2, relationship: "直达3" },
-        { source: 0, target: 3, relationship: "直达4" },
-        { source: 1, target: 4, relationship: "直达5" },
-        { source: 1, target: 5, relationship: "直达6" },
-        { source: 1, target: 6, relationship: "直达7" },
+        { source: 0, target: 1, relationship: "直达1", linknum: 1 },
+        { source: 1, target: 0, relationship: "直达2", linknum: 2 },
+        { source: 0, target: 2, relationship: "直达3", linknum: 0 },
+        { source: 0, target: 3, relationship: "直达4", linknum: 0 },
+        { source: 1, target: 4, relationship: "直达5", linknum: 0 },
+        { source: 1, target: 5, relationship: "直达6", linknum: 0 },
+        { source: 1, target: 6, relationship: "直达7", linknum: 0 },
       ];
       this.linksData = linksData;
 
@@ -67,7 +68,10 @@ export default {
         .forceSimulation(nodesData) //使用指定的nodes创建一个新的没有任何力模型的仿真
         .force(
           "link",
-          d3.forceLink(linksData).id((d) => d.id)
+          d3
+            .forceLink(linksData)
+            .id((d) => d.id)
+            .distance(100)
         ) //弹簧力，为仿真添加指定name的力模型并返回仿真
         .force("charge", d3.forceManyBody().strength(-2000)) //电荷力/万有引力/多体力
         .force("center", d3.forceCenter(width / 2, height / 2)) //向心力
@@ -95,14 +99,22 @@ export default {
 
       // 绘制连线
       let links = gWapper
-        .append("g") //root
-        .selectAll("line") //dom
-        .data(linksData) //model
+        .append("g")
+        .selectAll("path")
+        .data(linksData)
         .enter()
-        .append("line")
-        .attr("stroke", "blue")
-        .attr("stroke-width", 1)
-        .attr("marker-end", "url(#arrow)");
+        .append("path")
+        .attr("id", function (d, i) {
+          return (
+            "force-page" + ";" + d.source.name + ";" + d.target.name + ";" + i
+          );
+        })
+        .attr("marker-end", "url(#arrow)")
+        .attr("stroke", function (d, i) {
+          return "black";
+        })
+        .attr("stroke-width", 2)
+        .attr("fill-opacity", 0);
       this.links = links;
 
       // 绘制箭头
@@ -141,7 +153,28 @@ export default {
         .data(linksData)
         .enter()
         .append("text")
-        .text((d) => d.relationship)
+        .attr("dy", "-5")
+        .append("textPath")
+        .attr("startOffset", "30%")
+        // .attr("text-anchor","center")
+        .attr("xlink:href", function (d, i) {
+          return (
+            "#" +
+            "force-page" +
+            ";" +
+            d.source.name +
+            ";" +
+            d.target.name +
+            ";" +
+            i
+          );
+        })
+        .text(function (d) {
+          return d.relationship;
+        })
+        .attr("id", function (d, i) {
+          return "force-page" + ";" + d.relationship + ";" + i;
+        })
         .call(this.drag);
 
       this.linksText = linksText;
@@ -163,11 +196,26 @@ export default {
 
     ticked() {
       //虽然仿真系统会更新节点的位置(只是设置了nodes对象的x y属性)，但是它不会转为svg内部元素的坐标表示，这需要我们自己来操作
-      this.links
-        .attr("x1", (d) => d.source.x)
-        .attr("y1", (d) => d.source.y)
-        .attr("x2", (d) => d.target.x)
-        .attr("y2", (d) => d.target.y);
+      this.links.attr("d", function (d) {
+        var dr = 75 / d.linknum; //linknum is defined above
+        if (d.linknum === 0) {
+          return `M ${d.source.x},${d.source.y} L ${d.target.x},${d.target.y}`;
+        }
+        return (
+          "M" +
+          d.source.x +
+          "," +
+          d.source.y +
+          "A" +
+          dr +
+          "," +
+          dr +
+          " 0 0,1 " +
+          d.target.x +
+          "," +
+          d.target.y
+        );
+      });
 
       this.nodes
         .attr("cx", (d) => {
@@ -200,6 +248,7 @@ export default {
 
     drag(simulation) {
       function dragstart(event, d) {
+        console.info("kkk");
         if (!event.active) {
           simulation.alphaTarget(0.3).restart();
         }
