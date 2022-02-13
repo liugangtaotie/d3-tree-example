@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-02-10 23:47:55
- * @LastEditTime: 2022-02-13 00:38:04
+ * @LastEditTime: 2022-02-13 11:27:27
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /d3-tree-example/src/views/ForceExample/force-two.vue
@@ -54,7 +54,8 @@ export default {
         { source: 0, target: 2, relationship: "直达3", linknum: 0 },
         { source: 0, target: 3, relationship: "直达4", linknum: 0 },
         { source: 1, target: 4, relationship: "直达5", linknum: 0 },
-        { source: 1, target: 5, relationship: "直达6", linknum: 0 },
+        { source: 1, target: 5, relationship: "直达6", linknum: 1 },
+        { source: 5, target: 1, relationship: "直达61", linknum: 2 },
         { source: 1, target: 6, relationship: "直达7", linknum: 0 },
       ];
       this.linksData = linksData;
@@ -72,7 +73,7 @@ export default {
             .forceLink(linksData)
             .id((d) => d.id)
             .distance(100)
-        ) //弹簧力，为仿真添加指定name的力模型并返回仿真
+        ) // 弹簧力，为仿真添加指定name的力模型并返回仿真
         .force("charge", d3.forceManyBody().strength(-2000)) //电荷力/万有引力/多体力
         .force("center", d3.forceCenter(width / 2, height / 2)) //向心力
         .on("tick", this.ticked.bind(this));
@@ -153,7 +154,7 @@ export default {
         .data(linksData)
         .enter()
         .append("text")
-        .attr("dy", "-5")
+        .attr("dy", "5")
         .append("textPath")
         .attr("startOffset", "30%")
         // .attr("text-anchor","center")
