@@ -40,23 +40,28 @@
           class="gnode"
           :transform="`translate(${item.x},${item.y})`"
         >
-          <rect class="node" :width="util.nodeW" :height="util.nodeH"></rect>
-          <foreignObject :width="util.nodeW" :height="util.nodeH">
-            <div class="text" @click="onClickNodeItem(index)">
-              {{ item.data.name }}
-            </div>
-          </foreignObject>
-          <g
-            v-if="item.children && item.children.length > 0"
-            :transform="`translate(${util.nodeW / 2},${util.nodeH + 20})`"
-          >
-            <circle
-              class="addCircle"
-              cx="0"
-              cy="0"
-              r="10"
-              @click="addChildren(item)"
-            ></circle>
+          <g v-if="item.data.name == 'pusa'">
+            <rect class="node" :width="util.nodeW" height="10"></rect>
+          </g>
+          <g v-else>
+            <rect class="node" :width="util.nodeW" :height="util.nodeH"></rect>
+            <foreignObject :width="util.nodeW" :height="util.nodeH">
+              <div class="text" @click="onClickNodeItem(index)">
+                {{ item.data.name }}
+              </div>
+            </foreignObject>
+            <g
+              v-if="item.children && item.children.length > 0"
+              :transform="`translate(${util.nodeW / 2},${util.nodeH + 20})`"
+            >
+              <circle
+                class="addCircle"
+                cx="0"
+                cy="0"
+                r="10"
+                @click="addChildren(item)"
+              ></circle>
+            </g>
           </g>
         </g>
       </g>
@@ -118,7 +123,7 @@ export default {
     // 初始化节点
     getInit() {
       let hierarchyData = d3Hierarchy(this.treeData).sum((d) => d.value);
-      let treeLayout = d3Tree().nodeSize([200, 150]);
+      let treeLayout = d3Tree().nodeSize([200, 100]);
       let treeDataTrue = treeLayout(hierarchyData);
 
       treeDataTrue.each((d) => {
@@ -126,6 +131,7 @@ export default {
       });
 
       this.nodes = treeDataTrue.descendants();
+      console.info('mmmm',this.nodes)
       this.links = treeDataTrue.links();
 
       this.links.map((item) => {
@@ -136,12 +142,12 @@ export default {
         L${item.target.x + this.util.nodeW / 2} ${item.target.y - 10}`;
         } else {
           item.path = `M${item.source.x + this.util.nodeW / 2} ${
-            item.source.y + this.util.nodeH
+            item.source.y + this.util.nodeH -40
           }
         L${item.source.x + this.util.nodeW / 2} ${
-            item.source.y + this.util.nodeH + 50
+            item.source.y + this.util.nodeH + 50 -40
           }
-        L${item.target.x + this.util.nodeW / 2} ${item.target.y - 50}
+        L${item.target.x + this.util.nodeW / 2} ${item.target.y - 40}
         L${item.target.x + this.util.nodeW / 2} ${item.target.y - 10}`;
         }
       });
