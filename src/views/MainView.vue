@@ -123,7 +123,7 @@ export default {
     // 初始化节点
     getInit() {
       let hierarchyData = d3Hierarchy(this.treeData).sum((d) => d.value);
-      let treeLayout = d3Tree().nodeSize([200, 100]);
+      let treeLayout = d3Tree().nodeSize([200, 150]);
       let treeDataTrue = treeLayout(hierarchyData);
 
       treeDataTrue.each((d) => {
