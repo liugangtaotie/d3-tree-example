@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-02-10 23:47:55
- * @LastEditTime: 2022-02-18 11:59:29
+ * @LastEditTime: 2022-02-18 12:02:59
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /d3-tree-example/src/views/ForceExample/force-two.vue
@@ -144,7 +144,13 @@ export default {
         .attr("fill", (d, i) => {
           return color(i);
         })
-        .call(this.drag);
+        .call(
+          d3
+            .drag()
+            .on("start", dragstart)
+            .on("drag", dragged)
+            .on("end", dragend)
+        );
       this.nodes = nodes;
 
       // 边上的文字
@@ -175,8 +181,7 @@ export default {
         })
         .attr("id", function (d, i) {
           return "force-page" + ";" + d.relationship + ";" + i;
-        })
-        .call(this.drag);
+        });
 
       this.linksText = linksText;
 
@@ -188,11 +193,32 @@ export default {
         .enter()
         .append("text")
         .attr("text-anchor", "middle")
-        // .attr("dy", "0.3em")
-        .text((d) => d.name)
-        .call(this.drag);
+        .attr("pointer-event", "none")
+        .text((d) => d.name);
 
       this.texts = texts;
+
+      function dragstart(event, d) {
+        console.info("kkk");
+        if (!event.active) {
+          simulation.alphaTarget(0.3).restart();
+        }
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+
+      function dragged(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+      }
+
+      function dragend(event, d) {
+        if (!event.active) {
+          simulation.alphaTarget(0);
+        }
+        d.fx = null;
+        d.fy = null;
+      }
     },
 
     ticked() {
@@ -237,29 +263,7 @@ export default {
           "," +
           d.path[3]
         );
-        // return `M ${d.path[0]},${d.path[1]} L ${d.path[2]},${d.path[3]}`
       });
-
-      // .attr("d", function (d) {
-      //   var dr = 500 / d.linkNum; //linkNum is defined above
-      //   if (d.linkNum === 0) {
-      //     return `M ${d.source.x},${d.source.y} L ${d.target.x},${d.target.y}`;
-      //   }
-      //   return (
-      //     "M" +
-      //     d.source.x +
-      //     "," +
-      //     d.source.y +
-      //     "A" +
-      //     dr +
-      //     "," +
-      //     dr +
-      //     " 0 0,1 " +
-      //     d.target.x +
-      //     "," +
-      //     d.target.y
-      //   );
-      // });
 
       this.nodes
         .attr("cx", (d) => {
@@ -291,28 +295,6 @@ export default {
     },
 
     drag(simulation) {
-      function dragstart(event, d) {
-        console.info("kkk");
-        if (!event.active) {
-          simulation.alphaTarget(0.3).restart();
-        }
-        d.fx = d.x;
-        d.fy = d.y;
-      }
-
-      function dragged(event, d) {
-        d.fx = event.x;
-        d.fy = event.y;
-      }
-
-      function dragend(event, d) {
-        if (!event.active) {
-          simulation.alphaTarget(0);
-        }
-        d.fx = null;
-        d.fy = null;
-      }
-
       return d3
         .drag()
         .on("start", dragstart)
