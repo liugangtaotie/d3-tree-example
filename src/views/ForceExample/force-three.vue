@@ -1,10 +1,15 @@
 <!--
  * @Author: your name
  * @Date: 2022-02-10 23:47:55
- * @LastEditTime: 2022-02-18 12:02:59
+<<<<<<< HEAD
+ * @LastEditTime: 2022-02-18 16:25:00
  * @LastEditors: Please set LastEditors
+=======
+ * @LastEditTime: 2022-02-17 23:20:21
+ * @LastEditors: liugang
+>>>>>>> c1ea35412a3993b8cd1719c1570f23918e41fbda
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: /d3-tree-example/src/views/ForceExample/force-two.vue
+ * @FilePath: /d3-tree-example/src/views/ForceExample/force-three.vue
 -->
 <template>
   <!--功能 1、d3力导向图-->
@@ -292,14 +297,6 @@ export default {
           });
         this.simulation.stop();
       }
-    },
-
-    drag(simulation) {
-      return d3
-        .drag()
-        .on("start", dragstart)
-        .on("drag", dragged)
-        .on("end", dragend);
     },
 
     zoom() {
