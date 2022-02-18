@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-02-10 23:47:55
- * @LastEditTime: 2022-02-14 16:30:57
+ * @LastEditTime: 2022-02-18 11:59:29
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /d3-tree-example/src/views/ForceExample/force-two.vue
@@ -49,14 +49,14 @@ export default {
       this.nodesData = nodesData;
 
       let linksData = [
-        { source: 0, target: 1, relationship: "直达1", linknum: 1 },
-        { source: 1, target: 0, relationship: "直达2", linknum: 2 },
-        { source: 0, target: 2, relationship: "直达3", linknum: 0 },
-        { source: 0, target: 3, relationship: "直达4", linknum: 0 },
-        { source: 1, target: 4, relationship: "直达5", linknum: 0 },
-        { source: 1, target: 5, relationship: "直达6", linknum: 1 },
-        { source: 5, target: 1, relationship: "直达61", linknum: 2 },
-        { source: 1, target: 6, relationship: "直达7", linknum: 0 },
+        { source: 0, target: 1, relationship: "直达1", linkNum: 1 },
+        { source: 1, target: 0, relationship: "直达2", linkNum: 2 },
+        { source: 0, target: 2, relationship: "直达3", linkNum: 0 },
+        { source: 0, target: 3, relationship: "直达4", linkNum: 0 },
+        { source: 1, target: 4, relationship: "直达5", linkNum: 0 },
+        { source: 1, target: 5, relationship: "直达6", linkNum: 1 },
+        { source: 5, target: 1, relationship: "直达61", linkNum: 2 },
+        { source: 1, target: 6, relationship: "直达7", linkNum: 0 },
       ];
       this.linksData = linksData;
 
@@ -198,25 +198,68 @@ export default {
     ticked() {
       //虽然仿真系统会更新节点的位置(只是设置了nodes对象的x y属性)，但是它不会转为svg内部元素的坐标表示，这需要我们自己来操作
       this.links.attr("d", function (d) {
-        var dr = 500 / d.linknum; //linknum is defined above
-        if (d.linknum === 0) {
-          return `M ${d.source.x},${d.source.y} L ${d.target.x},${d.target.y}`;
+        // 计算偏移量
+        var tempX =
+          (d.source.x - d.target.x) /
+          Math.sqrt(
+            Math.pow(d.source.x - d.target.x, 2) +
+              Math.pow(d.source.y - d.target.y, 2)
+          );
+        var tempY =
+          (d.source.y - d.target.y) /
+          Math.sqrt(
+            Math.pow(d.source.x - d.target.x, 2) +
+              Math.pow(d.source.y - d.target.y, 2)
+          );
+        if (!tempX && !tempY) {
+          return "";
+        }
+        d.path = [];
+        d.path[0] = d.source.x - tempX * 30;
+        d.path[1] = d.source.y - tempY * 30;
+        d.path[2] = d.target.x + tempX * 30;
+        d.path[3] = d.target.y + tempY * 30;
+        var dr = 175 / d.linkNum; // linkNum is defined above
+        if (d.linkNum === 0) {
+          return `M ${d.path[0]},${d.path[1]} L ${d.path[2]},${d.path[3]}`;
         }
         return (
           "M" +
-          d.source.x +
+          d.path[0] +
           "," +
-          d.source.y +
+          d.path[1] +
           "A" +
           dr +
           "," +
           dr +
           " 0 0,1 " +
-          d.target.x +
+          d.path[2] +
           "," +
-          d.target.y
+          d.path[3]
         );
+        // return `M ${d.path[0]},${d.path[1]} L ${d.path[2]},${d.path[3]}`
       });
+
+      // .attr("d", function (d) {
+      //   var dr = 500 / d.linkNum; //linkNum is defined above
+      //   if (d.linkNum === 0) {
+      //     return `M ${d.source.x},${d.source.y} L ${d.target.x},${d.target.y}`;
+      //   }
+      //   return (
+      //     "M" +
+      //     d.source.x +
+      //     "," +
+      //     d.source.y +
+      //     "A" +
+      //     dr +
+      //     "," +
+      //     dr +
+      //     " 0 0,1 " +
+      //     d.target.x +
+      //     "," +
+      //     d.target.y
+      //   );
+      // });
 
       this.nodes
         .attr("cx", (d) => {
