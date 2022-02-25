@@ -131,7 +131,7 @@ export default {
       });
 
       this.nodes = treeDataTrue.descendants();
-      console.info('mmmm',this.nodes)
+      console.info("mmmm", this.nodes);
       this.links = treeDataTrue.links();
 
       this.links.map((item) => {
@@ -142,10 +142,10 @@ export default {
         L${item.target.x + this.util.nodeW / 2} ${item.target.y - 10}`;
         } else {
           item.path = `M${item.source.x + this.util.nodeW / 2} ${
-            item.source.y + this.util.nodeH -40
+            item.source.y + this.util.nodeH - 40
           }
         L${item.source.x + this.util.nodeW / 2} ${
-            item.source.y + this.util.nodeH + 50 -40
+            item.source.y + this.util.nodeH + 50 - 40
           }
         L${item.target.x + this.util.nodeW / 2} ${item.target.y - 40}
         L${item.target.x + this.util.nodeW / 2} ${item.target.y - 10}`;
