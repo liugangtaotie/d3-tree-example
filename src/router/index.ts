@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-31 23:32:17
- * @LastEditTime: 2022-03-28 09:39:10
+ * @LastEditTime: 2022-03-28 13:06:20
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /d3-tree-example/src/router/index.ts
@@ -120,6 +120,14 @@ const router = new VueRouter({
       // this generates a separate chunk (example.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/Jsplumb/one.vue'),
+    },
+    {
+      path: '/jsPlumb-two',
+      name: 'jsPlumbTwo',
+      // route level code-splitting
+      // this generates a separate chunk (example.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/Jsplumb/two.vue'),
     },
   ],
 })
