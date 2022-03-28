@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-31 23:32:17
- * @LastEditTime: 2022-02-24 23:35:12
+ * @LastEditTime: 2022-03-28 09:39:10
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /d3-tree-example/src/router/index.ts
@@ -104,6 +104,22 @@ const router = new VueRouter({
       // this generates a separate chunk (example.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/D3Cloud/index.vue'),
+    },
+    {
+      path: '/jsPlumb',
+      name: 'jsPlumb',
+      // route level code-splitting
+      // this generates a separate chunk (example.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/Jsplumb/index.vue'),
+    },
+    {
+      path: '/jsPlumb-one',
+      name: 'jsPlumbOne',
+      // route level code-splitting
+      // this generates a separate chunk (example.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/Jsplumb/one.vue'),
     },
   ],
 })

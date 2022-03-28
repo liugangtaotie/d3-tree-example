@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-02-24 23:27:51
- * @LastEditTime: 2022-02-25 09:40:01
+ * @LastEditTime: 2022-02-25 10:37:09
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /d3-tree-example/src/views/D3-cloud/myCloud.js
@@ -20,6 +20,7 @@ export default function (option, callback) {
   let theSize = option.size,
     theWordList = option.wordList,
     theSvgElement = option.svgElement
+  console.info('theSvgElement', theSvgElement)
 
   var layout = cloud()
     .size(theSize)
